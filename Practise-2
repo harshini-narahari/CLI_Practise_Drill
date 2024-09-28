@@ -1,0 +1,89 @@
+wget https://raw.githubusercontent.com/bobdeng/owlreader/master/ERead/assets/books/Harry%20Potter%20and%20the%20Goblet%20of%20Fire.txt          #downloading the web content to files
+mv "Harry Potter and the Goblet of Fire.txt" Harry_potter.txt               #Renaming the .txt file
+
+#command for printing the first three lines in the book
+head -n 3 Harry_Potter.txt                      #-n for giving number of lines
+
+
+#command for printing the last 10 lines in the book
+tail Harry_Potter.txt                           #tail command by default prints last 10 lines
+
+#Number of times the word "Harry" occured
+grep -o  "Harry" Harry_Potter.txt | wc -w       # grep -o searches for the word 'Harry' in the given .txt file. and from that wc -w command will count of no. of times that paticular word occurred
+
+#Number of times the word "Ron" occured
+grep -o  "Ron" Harry_Potter.txt | wc -w
+
+
+#Number of times the word "Hermione" occured
+grep -o  "Hermione" Harry_Potter.txt | wc -w
+
+#Number of times the word "Dumbledore" occured
+grep -o  "Dumbledore" Harry_Potter.txt | wc -w
+
+
+#command for printing lines from 100 through 200 in the book
+head -n 200 Harry_Potter.txt | tail -100 Harry_Potter.txt
+
+#Command for counting unique words are present in the book?
+sort Harry_Potter.txt | uniq | wc -w              # for finding unique words, first sorting should be done. Sorting can be done using sort .txt command and uniq is used to find unique words . Later words can be counted using wc -w command.
+
+
+
+Processes & Ports
+-----------------
+
+#Command for listing our browser's process ids (pid) and parent process ids(ppid)
+ps -e -o pid,ppid,cmd | grep chrome               # ps -e lists all processes and pid - Process id, ppid - parent process id , cmd - command used to start process 
+
+#command for stop the browser application from the command line
+killall chrome                       # killall stops alll instances of a specific process
+
+#Command for listing the top 3 processes by CPU usage.
+ps -eo pid,ppid,cmd,%cpu --sort=-%cpu | head -n 4              #%cpu indicates cpu usage percentage by each process.--sort=-%cpu used to sort the processes by CPU usage in descending order. head -n 4 gives top 3 cpu usages processes
+
+#Command for listing the top 3 processes by memory usage.
+ps -eo pid,ppid,cmd,%mem --sort=-%mem | head -n 4              #%mem indicates memory usage percatage by each process.
+
+#Command for starting a Python HTTP server on port 8000
+python3 -m http.server 8000                            # starts a simple HTTP server on port 8000, which is the default port used by this example.
+
+# Open another tab. Stop the process you started in the previous step
+pkill -f "python3 -m http.server 8000"
+
+#Command for Starting a Python HTTP server on port 90
+sudo python3 -m http.server 90                      #we use sudo for Port numbers below 1024 because they are considered privileged ports and require superuser (root) privileges to bind to them.
+
+#Command for Displaying all active connections and the corresponding TCP / UDP ports.
+sudo apt-get install net-tools                      #-t: Show TCP connections, -u: Show UDP connections, -l: Show listening sockets (active ports) , -n: Show numerical addresses and ports (without resolving domain names).
+netstat -tuln
+
+#Comamnd for finding the pid of the process that is listening on port 5432
+netstat -tuln | grep ':5432'                        #netstat -tuln lists all TCP/UDP connections and listening ports along with their respective PIDs. and grep ':5432' filters the output to show only port 5432
+
+
+
+Managing software
+-----------------
+
+#Install htop, vim and nginx
+sudo apt-get install htop vim nginx   # apt-get install installs given packages.
+
+#Uninstall nginx
+sudo apt-get remove nginx   # apt-get remove uninstalls the given package
+
+Misc
+----
+
+What's your local IP address?
+ifconfig                        #ifconfig shows network configuration
+
+#Find the IP address of google.com
+nslookup google.com            #nslookup queries DNS to find the IP address of a domain.
+
+#How to check if Internet is working using CLI?
+ping google.com
+
+#Where is the node command located? What about code?
+which node                    #Used to find the path of the node command.
+which code                    #Used to find the path of the code command.
