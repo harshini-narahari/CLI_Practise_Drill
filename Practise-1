@@ -1,0 +1,58 @@
+hello
+├── five
+│   └── six
+│       ├── c.txt
+│       └── seven
+│           └── error.log
+└── one
+    ├── a.txt
+    ├── b.txt
+    └── two
+        ├── d.txt
+        └── three
+            ├── e.txt
+            └── four
+                └── access.log
+
+#command to create the above structure
+mkdir hello                    # creating hello directory
+mkdir -p hello/five/six        # creating specified path for five and six directories
+cd hello/five/six              #chnaging directory to six
+touch c.txt                    # creating an empty file c.txt
+mkdir seven
+cd seven
+touch error.log
+cd ~                          #chnaging to home directory
+
+mkdir -p hello/one
+cd one
+cat > a.txt                  # appending the following text to a.txt file
+Unix is a family of multitasking, multiuser computer operating systems that derive from the original AT&T Unix, development starting in the 1970s at the Bell Labs research center by Ken Thompson, Dennis Ritchie, and others
+touch b.txt
+mkdir two
+cd two
+touch d.txt
+mkdir three
+cd three
+touch e.txt
+mkdir four
+cd four
+touch access.log
+
+
+# command for deleting all .log files
+find . -name "*.log" -type f -delete
+
+#command for deleting directory named five
+cd hello
+rm -r five           # for deleting directory recursively
+
+#command for renaming directory 'one' to 'uno'
+mv one uno
+
+#command for moving a.txt to directory 'two'
+mv a.txt two
+
+
+
+
